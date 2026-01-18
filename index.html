@@ -3,270 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dost Yurdu - Slim Premium</title>
+    <title>Dost Yurdu - Kur'an-ı Kerim Arşivi</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
-
-        :root {
-            --accent: #D4AF37;
-            --bg: #0A0A0C;
-            --panel: #121216;
-            --text: #E0E0E0;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .main-container {
-            width: 100%;
-            max-width: 440px;
-            padding: 40px 15px;
+            padding: 0;
+            background: #0f0c29; 
+            background: radial-gradient(circle at center, #1e1e3f 0%, #0f0c29 100%);
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        header h1 {
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin: 0 0 30px 0;
-            font-weight: 300;
+        /* İHTİŞAMLI BAŞLIK */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: #f39c12;
+            margin-top: 50px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+        }
+
+        .sub-title {
+            font-size: 1rem;
+            color: #bdc3c7;
+            margin-bottom: 40px;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
 
-        /* SLIM PLAYER - İNCELTİLMİŞ KİBAR KUTU */
-        .slim-player {
+        /* ANA KAPSAYICI - MERKEZLEME GARANTİSİ */
+        .wrapper {
             width: 100%;
-            background: var(--panel);
-            border-radius: 20px;
-            padding: 20px 25px; /* Yükseklik azaltıldı */
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
             box-sizing: border-box;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            margin-bottom: 20px;
         }
 
-        #track-title {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: #fff;
-            margin-bottom: 15px;
-            display: block;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* İNCE İLERLEME ÇUBUĞU */
-        .seek-container {
+        /* İNCE VE KİBAR PLAYER KUTUSU */
+        .player-card {
             width: 100%;
-            height: 3px; /* Çok ince ve zarif */
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-            margin-bottom: 8px;
-        }
-        #seek-fill {
-            height: 100%;
-            background: var(--accent);
-            width: 0%;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 20px 30px; /* Yükseklik azaltıldı, kibarlaştı */
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        .time-row {
+        #track-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f39c12;
+            margin-bottom: 15px;
+            height: 25px;
+        }
+
+        /* İNCE MODERN BAR */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #progress-bar {
+            height: 100%;
+            background: #f39c12;
+            width: 0%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #f39c12;
+        }
+
+        .time-info {
             display: flex;
             justify-content: space-between;
             font-size: 10px;
-            color: #666;
+            color: #888;
             margin-bottom: 15px;
         }
 
-        /* KOMPAKT KONTROLLER */
+        /* KİBAR BUTONLAR */
         .controls {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 25px;
+            gap: 30px;
         }
 
-        .c-btn {
+        .nav-btn {
             background: none;
             border: none;
-            color: #888;
+            color: #bdc3c7;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
         }
-        .c-btn:hover { color: #fff; }
+        .nav-btn:hover { color: #f39c12; }
 
-        .play-wrap {
-            width: 50px; /* Buton küçültüldü */
-            height: 50px;
-            background: var(--accent);
+        .play-btn {
+            width: 55px;
+            height: 55px;
+            background: #f39c12;
             border-radius: 50%;
+            color: #0f0c29;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             cursor: pointer;
-            box-shadow: 0 8px 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.4);
+            transition: 0.3s;
         }
+        .play-btn:hover { transform: scale(1.05); }
 
-        /* LİSTE ÜNİTESİ */
-        .list-wrap {
+        /* GÖSTERİŞLİ LİSTE KUTUSU */
+        .list-card {
             width: 100%;
-            background: rgba(255,255,255,0.02);
-            border-radius: 15px;
-            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             box-sizing: border-box;
         }
 
-        .scroll-list {
-            max-height: 250px;
+        .list-title {
+            color: #f39c12;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-left: 3px solid #f39c12;
+            padding-left: 10px;
+        }
+
+        .scroll-area {
+            max-height: 300px;
             overflow-y: auto;
         }
 
         ul { list-style: none; padding: 0; margin: 0; }
         li {
-            padding: 12px 15px;
-            border-radius: 10px;
-            margin-bottom: 4px;
-            font-size: 0.85rem;
-            color: #777;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
             cursor: pointer;
+            font-size: 0.9rem;
+            color: #bdc3c7;
             transition: 0.2s;
-            display: flex;
-            justify-content: space-between;
         }
-        li:hover { background: rgba(255,255,255,0.03); color: #fff; }
+        li:hover { background: rgba(243, 156, 18, 0.05); color: #fff; }
         li.active {
-            color: var(--accent);
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(243, 156, 18, 0.1);
+            color: #f39c12;
+            border-left: 4px solid #f39c12;
             font-weight: 600;
         }
 
-        ::-webkit-scrollbar { width: 2px; }
-        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #f39c12; border-radius: 10px; }
 
-        footer { margin-top: 30px; font-size: 10px; color: #333; letter-spacing: 2px; }
-        #audio-engine { display: none; }
+        #main-audio { display: none; }
+        footer { margin: 40px 0; font-size: 0.8rem; color: #444; }
+
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <header><h1>Dost Yurdu</h1></header>
+    <h1>Dost Yurdu</h1>
+    <div class="sub-title">Kur'an-ı Kerim Arşivi</div>
 
-    <div class="slim-player">
-        <span id="track-title">Sure Seçiniz...</span>
-        
-        <div class="seek-container" id="seek-bar">
-            <div id="seek-fill"></div>
-        </div>
-        <div class="time-row">
-            <span id="time-c">0:00</span>
-            <span id="time-d">0:00</span>
+    <div class="wrapper">
+        <div class="player-card">
+            <div id="track-name">Sure Seçiniz...</div>
+            
+            <div class="progress-container" id="progress-area">
+                <div id="progress-bar"></div>
+            </div>
+            <div class="time-info">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+
+            <div class="controls">
+                <button class="nav-btn" onclick="playPrev()">⏮</button>
+                <div class="play-btn" id="play-pause" onclick="togglePlay()">▶</div>
+                <button class="nav-btn" onclick="playNext()">⏭</button>
+            </div>
+            <audio id="main-audio"></audio>
         </div>
 
-        <div class="controls">
-            <button class="c-btn" onclick="prev()">⏮</button>
-            <div class="play-wrap" id="play-btn" onclick="toggle()">▶</div>
-            <button class="c-btn" onclick="next()">⏭</button>
+        <div class="list-card">
+            <div class="list-title">Sure Listesi</div>
+            <div class="scroll-area">
+                <ul id="playlist-ul"></ul>
+            </div>
         </div>
-        <audio id="audio-engine"></audio>
+
+        <footer>© 2026 Dost Yurdu - Mehmet3620</footer>
     </div>
-
-    <div class="list-wrap">
-        <div class="scroll-list">
-            <ul id="playlist"></ul>
-        </div>
-    </div>
-
-    <footer>DIGITAL MUSHAF V5.0</footer>
-</div>
 
 <script>
-    const audio = document.getElementById('audio-engine');
-    const playBtn = document.getElementById('play-btn');
-    const fill = document.getElementById('seek-fill');
-    const seekBar = document.getElementById('seek-bar');
-    const title = document.getElementById('track-title');
-    const playlistUl = document.getElementById('playlist');
-    const timeC = document.getElementById('time-c');
-    const timeD = document.getElementById('time-d');
+    const audio = document.getElementById('main-audio');
+    const playPauseBtn = document.getElementById('play-pause');
+    const progressBar = document.getElementById('progress-bar');
+    const progressArea = document.getElementById('progress-area');
+    const trackNameDisp = document.getElementById('track-name');
+    const playlistUl = document.getElementById('playlist-ul');
+    const currTimeDisp = document.getElementById('current-time');
+    const durationDisp = document.getElementById('duration');
 
+    // LİSTEYİ BURAYA EKLEYECEĞİZ
     const list = [
-        // {n: "001 Fatiha Suresi", l: "https://archive.org/.../001.mp3"}
+        // {n: "001 Fatiha Suresi", l: "https://archive.org/..."}
     ];
 
-    let current = 0;
+    let currentIndex = 0;
 
-    function render() {
+    function renderPlaylist() {
         playlistUl.innerHTML = '';
-        list.forEach((t, i) => {
+        list.forEach((item, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span>${t.n}</span>`;
-            li.onclick = () => load(i);
-            if(i === current) li.className = 'active';
+            li.textContent = item.n;
+            li.onclick = () => loadTrack(index);
+            if(index === currentIndex) li.className = 'active';
             playlistUl.appendChild(li);
         });
     }
 
-    function load(i) {
+    function loadTrack(index) {
         if(list.length === 0) return;
-        current = i;
-        audio.src = list[current].l;
-        title.textContent = list[current].n;
-        render();
+        currentIndex = index;
+        audio.src = list[index].l;
+        trackNameDisp.textContent = list[index].n;
+        renderPlaylist();
         audio.play();
-        playBtn.textContent = '⏸';
-        const active = document.querySelector('li.active');
-        if(active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        playPauseBtn.textContent = '⏸';
+        const activeLi = document.querySelector('li.active');
+        if(activeLi) activeLi.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    function toggle() {
-        if(audio.paused) { audio.play(); playBtn.textContent = '⏸'; }
-        else { audio.pause(); playBtn.textContent = '▶'; }
+    function togglePlay() {
+        if(audio.paused) { audio.play(); playPauseBtn.textContent = '⏸'; }
+        else { audio.pause(); playPauseBtn.textContent = '▶'; }
     }
 
-    audio.ontimeupdate = () => {
-        const p = (audio.currentTime / audio.duration) * 100;
-        fill.style.width = p + '%';
-        timeC.textContent = fmt(audio.currentTime);
-        if(audio.duration) timeD.textContent = fmt(audio.duration);
+    audio.ontimeupdate = (e) => {
+        const { currentTime, duration } = e.srcElement;
+        const percent = (currentTime / duration) * 100;
+        progressBar.style.width = `${percent}%`;
+        currTimeDisp.textContent = formatTime(currentTime);
+        if(duration) durationDisp.textContent = formatTime(duration);
     }
 
-    function fmt(s) {
-        let m = Math.floor(s / 60);
-        let sec = Math.floor(s % 60);
-        return `${m}:${sec < 10 ? '0'+sec : sec}`;
+    function formatTime(time) {
+        let m = Math.floor(time / 60);
+        let s = Math.floor(time % 60);
+        return `${m}:${s < 10 ? '0'+s : s}`;
     }
 
-    seekBar.onclick = (e) => {
-        audio.currentTime = (e.offsetX / seekBar.clientWidth) * audio.duration;
+    progressArea.onclick = (e) => {
+        audio.currentTime = (e.offsetX / progressArea.clientWidth) * audio.duration;
     }
 
-    function next() { current = (current + 1) % list.length; load(current); }
-    function prev() { current = (current - 1 + list.length) % list.length; load(current); }
-    audio.onended = next;
+    function playNext() { currentIndex = (currentIndex + 1) % list.length; loadTrack(currentIndex); }
+    function playPrev() { currentIndex = (currentIndex - 1 + list.length) % list.length; loadTrack(currentIndex); }
+    audio.onended = playNext;
 
     if(list.length > 0) {
-        title.textContent = list[0].n;
+        trackNameDisp.textContent = list[0].n;
         audio.src = list[0].l;
-        render();
+        renderPlaylist();
     }
 </script>
-
 </body>
 </html>
