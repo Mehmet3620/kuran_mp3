@@ -3,160 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dost Yurdu - Kur'an-ı Kerim Arşivi</title>
+    <title>Dost Yurdu - Yahya Hawwa Arşivi</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background: #0f0c29; 
             background: radial-gradient(circle at center, #1e1e3f 0%, #0f0c29 100%);
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: #f39c12;
-            margin-top: 50px;
-            margin-bottom: 5px;
+            font-size: 3rem; color: #f39c12;
+            margin-top: 40px; margin-bottom: 5px;
             text-shadow: 0 0 25px rgba(243, 156, 18, 0.4);
         }
 
-        .sub-title {
-            font-size: 1rem;
-            color: #bdc3c7;
-            margin-bottom: 40px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+        .reader-name {
+            font-size: 1.2rem; color: #bdc3c7;
+            margin-bottom: 30px; letter-spacing: 3px;
         }
 
         .wrapper {
-            width: 100%;
-            max-width: 550px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 20px;
-            box-sizing: border-box;
+            width: 100%; max-width: 500px;
+            display: flex; flex-direction: column; align-items: center; padding: 0 20px; box-sizing: border-box;
         }
 
-        /* İNCE VE KİBAR PLAYER */
+        /* İNCE VE KİBAR PLAYER KUTUSU */
         .player-card {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 15px 30px; /* Çok daha kibar yükseklik */
-            border: 1px solid rgba(243, 156, 18, 0.3);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 15px 25px; /* Yükseklik iyice daraltıldı */
+            border: 1px solid rgba(243, 156, 18, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             margin-bottom: 25px;
             text-align: center;
         }
 
         #track-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #f39c12;
-            margin-bottom: 12px;
-            height: 22px;
+            font-size: 0.95rem; font-weight: 600; color: #f39c12;
+            margin-bottom: 12px; height: 20px;
         }
 
         .progress-container {
-            width: 100%;
-            height: 3px; /* Ultra ince bar */
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            margin-bottom: 8px;
-            cursor: pointer;
+            width: 100%; height: 3px; background: rgba(255,255,255,0.1);
+            border-radius: 10px; margin-bottom: 8px; cursor: pointer;
         }
         #progress-bar {
-            height: 100%;
-            background: #f39c12;
-            width: 0%;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #f39c12;
+            height: 100%; background: #f39c12; width: 0%; border-radius: 10px;
         }
 
         .time-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 9px;
-            color: #7f8c8d;
-            margin-bottom: 12px;
+            display: flex; justify-content: space-between;
+            font-size: 9px; color: #7f8c8d; margin-bottom: 10px;
         }
 
         .controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
+            display: flex; align-items: center; justify-content: center; gap: 20px;
         }
 
         .nav-btn {
-            background: none;
-            border: none;
-            color: #bdc3c7;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.3s;
+            background: none; border: none; color: #bdc3c7;
+            font-size: 1rem; cursor: pointer; transition: 0.3s;
         }
         .nav-btn:hover { color: #f39c12; }
 
         .play-btn {
-            width: 48px; /* Kibar oynat butonu */
-            height: 48px;
-            background: #f39c12;
-            border-radius: 50%;
-            color: #0f0c29;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+            width: 45px; height: 45px; /* Kompakt buton */
+            background: #f39c12; border-radius: 50%; color: #0f0c29;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; cursor: pointer;
         }
 
-        /* LİSTE KUTUSU */
+        /* LİSTE */
         .list-card {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-sizing: border-box;
+            width: 100%; background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px; padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05); box-sizing: border-box;
         }
 
-        .scroll-area {
-            max-height: 280px;
-            overflow-y: auto;
-        }
+        .scroll-area { max-height: 250px; overflow-y: auto; }
 
         ul { list-style: none; padding: 0; margin: 0; }
         li {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-            cursor: pointer;
-            font-size: 0.85rem;
-            color: #bdc3c7;
-            display: flex;
-            justify-content: space-between;
+            padding: 10px 15px; border-bottom: 1px solid rgba(255,255,255,0.02);
+            cursor: pointer; font-size: 0.8rem; color: #bdc3c7;
+            display: flex; justify-content: space-between;
         }
-        li:hover { background: rgba(243, 156, 18, 0.05); }
         li.active {
-            color: #f39c12;
-            background: rgba(243, 156, 18, 0.1);
-            border-left: 3px solid #f39c12;
-            font-weight: 600;
+            color: #f39c12; background: rgba(243, 156, 18, 0.08);
+            border-left: 3px solid #f39c12; font-weight: 600;
         }
 
-        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar { width: 2px; }
         ::-webkit-scrollbar-thumb { background: #f39c12; }
 
         footer { margin: 30px 0; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
@@ -166,11 +111,11 @@
 <body>
 
     <h1>Dost Yurdu</h1>
-    <div class="sub-title">Kur'an-ı Kerim Arşivi</div>
+    <div class="reader-name">Kari: Yahya Hawwa</div>
 
     <div class="wrapper">
         <div class="player-card">
-            <div id="track-name">Sure Yükleniyor...</div>
+            <div id="track-name">Yükleniyor...</div>
             <div class="progress-container" id="progress-area">
                 <div id="progress-bar"></div>
             </div>
@@ -192,7 +137,7 @@
             </div>
         </div>
 
-        <footer>© 2026 DOST YURDU - MEHMET3620</footer>
+        <footer>MEHMET3620 &bull; YAHYA HAWWA ÖZEL ARŞİVİ</footer>
     </div>
 
 <script>
@@ -205,13 +150,12 @@
     const currTimeDisp = document.getElementById('current-time');
     const durationDisp = document.getElementById('duration');
 
-    // Sizin verdiğiniz linkten yola çıkarak 114 sureyi otomatik oluşturuyoruz
     const baseUrl = "https://archive.org/download/002_20260118/";
     const sureNames = ["Fatiha","Bakara","Al-i İmran","Nisa","Maide","En'am","A'raf","Enfal","Tevbe","Yunus","Hud","Yusuf","Ra'd","İbrahim","Hicr","Nahl","İsra","Kehf","Meryem","Taha","Enbiya","Hac","Mü'minun","Nur","Furkan","Şuara","Neml","Kasas","Ankebut","Rum","Lokman","Secde","Ahzab","Sebe","Fatır","Yasin","Saffat","Sad","Zümer","Mü'min","Fussilet","Şura","Zuhruf","Duhan","Casiye","Ahkaf","Muhammed","Fetih","Hucurat","Kaf","Zariyat","Tur","Necm","Kamer","Rahman","Vakıa","Hadid","Mücadele","Haşr","Mümtehine","Saf","Cuma","Münafikun","Teğabün","Talak","Tahrim","Mülk","Kalem","Hakka","Mearic","Nuh","Cin","Müzzemmil","Müddessir","Kıyamet","İnsan","Mürselat","Nebe","Naziat","Abese","Tekvir","İnfitar","Mutaffifin","İnşikak","Büruc","Tarık","A'la","Gaşiye","Fecr","Beled","Şems","Leyl","Duha","İnşirah","Tin","Alak","Kadir","Beyyine","Zilzal","Adiyat","Karia","Tekasür","Asr","Hümeze","Fil","Kureyş","Maun","Kevser","Kafirun","Nasr","Tebbet","İhlas","Felak","Nas"];
 
     const list = sureNames.map((name, index) => {
         let num = (index + 1).toString().padStart(3, '0');
-        return { n: `${num} - ${name} Suresi`, l: `${baseUrl}${num}.mp3` };
+        return { n: `${num} - ${name}`, l: `${baseUrl}${num}.mp3` };
     });
 
     let currentIndex = 0;
@@ -220,7 +164,7 @@
         playlistUl.innerHTML = '';
         list.forEach((item, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span>${item.n}</span> <small style="opacity:0.5">DİNLE</small>`;
+            li.innerHTML = `<span>${item.n}</span>`;
             li.onclick = () => loadTrack(index);
             if(index === currentIndex) li.className = 'active';
             playlistUl.appendChild(li);
@@ -251,15 +195,11 @@
     };
 
     function formatTime(time) {
-        let m = Math.floor(time / 60);
-        let s = Math.floor(time % 60);
+        let m = Math.floor(time / 60); let s = Math.floor(time % 60);
         return `${m}:${s < 10 ? '0'+s : s}`;
     }
 
-    progressArea.onclick = (e) => {
-        audio.currentTime = (e.offsetX / progressArea.clientWidth) * audio.duration;
-    };
-
+    progressArea.onclick = (e) => { audio.currentTime = (e.offsetX / progressArea.clientWidth) * audio.duration; };
     function playNext() { currentIndex = (currentIndex + 1) % list.length; loadTrack(currentIndex); }
     function playPrev() { currentIndex = (currentIndex - 1 + list.length) % list.length; loadTrack(currentIndex); }
     audio.onended = playNext;
