@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dost Yurdu - Yahya Hawwa Arşivi</title>
+    <title>Dost Yurdu - Yahya Hawwa Kur'an Arşivi</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
+        /* GENEL ARKA PLAN VE İHTİŞAM */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
@@ -18,18 +19,18 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem; color: #f39c12;
-            margin-top: 40px; margin-bottom: 5px;
+            font-size: 3.5rem; color: #f39c12;
+            margin-top: 50px; margin-bottom: 5px;
             text-shadow: 0 0 25px rgba(243, 156, 18, 0.4);
         }
 
-        .reader-name {
-            font-size: 1.2rem; color: #bdc3c7;
-            margin-bottom: 30px; letter-spacing: 3px;
+        .sub-title {
+            font-size: 1rem; color: #bdc3c7;
+            margin-bottom: 35px; letter-spacing: 5px; text-transform: uppercase;
         }
 
         .wrapper {
-            width: 100%; max-width: 500px;
+            width: 100%; max-width: 550px;
             display: flex; flex-direction: column; align-items: center; padding: 0 20px; box-sizing: border-box;
         }
 
@@ -37,18 +38,18 @@
         .player-card {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 15px 25px; /* Yükseklik iyice daraltıldı */
-            border: 1px solid rgba(243, 156, 18, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 15px 30px; 
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
             margin-bottom: 25px;
             text-align: center;
         }
 
         #track-name {
-            font-size: 0.95rem; font-weight: 600; color: #f39c12;
-            margin-bottom: 12px; height: 20px;
+            font-size: 1rem; font-weight: 600; color: #f39c12;
+            margin-bottom: 12px; height: 22px;
         }
 
         .progress-container {
@@ -57,65 +58,81 @@
         }
         #progress-bar {
             height: 100%; background: #f39c12; width: 0%; border-radius: 10px;
+            box-shadow: 0 0 10px #f39c12;
         }
 
         .time-info {
             display: flex; justify-content: space-between;
-            font-size: 9px; color: #7f8c8d; margin-bottom: 10px;
+            font-size: 9px; color: #7f8c8d; margin-bottom: 12px;
         }
 
         .controls {
-            display: flex; align-items: center; justify-content: center; gap: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 25px;
         }
 
         .nav-btn {
             background: none; border: none; color: #bdc3c7;
-            font-size: 1rem; cursor: pointer; transition: 0.3s;
+            font-size: 1.1rem; cursor: pointer; transition: 0.3s;
         }
         .nav-btn:hover { color: #f39c12; }
 
         .play-btn {
-            width: 45px; height: 45px; /* Kompakt buton */
-            background: #f39c12; border-radius: 50%; color: #0f0c29;
+            width: 48px; height: 48px; background: #f39c12;
+            border-radius: 50%; color: #0f0c29;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; cursor: pointer;
+            font-size: 1.2rem; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
         }
 
-        /* LİSTE */
+        /* LİSTE KUTUSU VE SİMGELER */
         .list-card {
             width: 100%; background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px; padding: 15px;
+            border-radius: 20px; padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05); box-sizing: border-box;
         }
 
-        .scroll-area { max-height: 250px; overflow-y: auto; }
+        .scroll-area { max-height: 280px; overflow-y: auto; }
 
         ul { list-style: none; padding: 0; margin: 0; }
         li {
-            padding: 10px 15px; border-bottom: 1px solid rgba(255,255,255,0.02);
-            cursor: pointer; font-size: 0.8rem; color: #bdc3c7;
-            display: flex; justify-content: space-between;
+            padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.02);
+            cursor: pointer; font-size: 0.85rem; color: #bdc3c7;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.2s;
         }
+        li:hover { background: rgba(243, 156, 18, 0.05); color: #fff; }
         li.active {
-            color: #f39c12; background: rgba(243, 156, 18, 0.08);
+            color: #f39c12; background: rgba(243, 156, 18, 0.1);
             border-left: 3px solid #f39c12; font-weight: 600;
         }
 
-        ::-webkit-scrollbar { width: 2px; }
+        .track-info { display: flex; align-items: center; gap: 10px; }
+        .mp3-icon { color: #f39c12; font-size: 0.9rem; opacity: 0.7; }
+        .kari-name { font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+        li:hover .kari-name { color: #f39c12; }
+
+        ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-thumb { background: #f39c12; }
 
-        footer { margin: 30px 0; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
+        /* FOOTER VE BLOG LİNKİ */
+        footer { margin: 40px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .blog-link {
+            text-decoration: none; display: flex; align-items: center; gap: 8px;
+            color: #f39c12; font-weight: 600; font-size: 0.8rem; transition: 0.3s; opacity: 0.8;
+        }
+        .blog-link:hover { opacity: 1; transform: scale(1.05); }
+
         #main-audio { display: none; }
     </style>
 </head>
 <body>
 
     <h1>Dost Yurdu</h1>
-    <div class="reader-name">Kari (Arapça: قَارِئ - Qāri') Okuyan: Yahya Hawwa</div>
+    <div class="sub-title">Kur'an-ı Kerim Arşivi</div>
 
     <div class="wrapper">
         <div class="player-card">
-            <div id="track-name">Yükleniyor...</div>
+            <div id="track-name">Bağlanıyor...</div>
             <div class="progress-container" id="progress-area">
                 <div id="progress-bar"></div>
             </div>
@@ -137,7 +154,12 @@
             </div>
         </div>
 
-        <footer>MEHMET3620 &bull; YAHYA HAWWA ÖZEL ARŞİVİ</footer>
+        <footer>
+            <a href="https://dostyurdu.blogspot.com/" target="_blank" class="blog-link">
+                <span style="font-size: 1.1rem;">🌐</span> DOST YURDU BLOG
+            </a>
+            <div style="font-size: 0.65rem; color: #444; letter-spacing: 2px;">© 2026 DOST YURDU - MEHMET3620</div>
+        </footer>
     </div>
 
 <script>
@@ -155,7 +177,7 @@
 
     const list = sureNames.map((name, index) => {
         let num = (index + 1).toString().padStart(3, '0');
-        return { n: `${num} - ${name}`, l: `${baseUrl}${num}.mp3` };
+        return { n: `${num} - ${name} Suresi`, l: `${baseUrl}${num}.mp3` };
     });
 
     let currentIndex = 0;
@@ -164,7 +186,13 @@
         playlistUl.innerHTML = '';
         list.forEach((item, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span>${item.n}</span>`;
+            li.innerHTML = `
+                <div class="track-info">
+                    <span class="mp3-icon">🎵</span>
+                    <span>${item.n}</span>
+                </div>
+                <span class="kari-name">Yahya Hawwa</span>
+            `;
             li.onclick = () => loadTrack(index);
             if(index === currentIndex) li.className = 'active';
             playlistUl.appendChild(li);
